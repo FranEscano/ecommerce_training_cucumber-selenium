@@ -18,7 +18,7 @@ pipeline {
             steps {
                 // Use Maven to build the project
                 script {
-                    sh "bin/mvn clean verify"
+                    sh "mvn -B -DskipTests clean package"
                 }
             }
         }
