@@ -1,10 +1,10 @@
 pipeline {
     agent any
 
-    environment {
-        // Define Maven home if not automatically detected
-        MAVEN_HOME = tool 'Maven'
-    }
+    // environment {
+    //     // Define Maven home if not automatically detected
+    //     MAVEN_HOME = tool 'Maven'
+    // }
 
     stages {
         stage('Checkout') {
@@ -18,19 +18,19 @@ pipeline {
             steps {
                 // Use Maven to build the project
                 script {
-                    sh "${MAVEN_HOME}/bin/mvn clean verify"
+                    sh "mvn clean verify"
                 }
             }
         }
 
-        stage('Test') {
-            steps {
-                // Run tests using Maven
-                script {
-                    sh "${MAVEN_HOME}/bin/mvn test"
-                }
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         // Run tests using Maven
+        //         script {
+        //             sh "${MAVEN_HOME}/bin/mvn test"
+        //         }
+        //     }
+        // }
 
         // stage('Deploy') {
         //     steps {
