@@ -18,7 +18,7 @@ pipeline {
             steps {
                 // Use Maven to build the project
                 script {
-                    sh "${MAVEN_HOME}/bin/mvn clean install"
+                    sh "${MAVEN_HOME}/bin/mvn clean verify"
                 }
             }
         }
