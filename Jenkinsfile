@@ -32,15 +32,15 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            steps {
-                // Perform deployment steps if needed
-                script {
-                    // Example: Deploy the built artifacts to a repository or server
-                    // sh "${MAVEN_HOME}/bin/mvn deploy"
-                }
-            }
-        }
+        // stage('Deploy') {
+        //     steps {
+        //         // Perform deployment steps if needed
+        //         script {
+        //             // Example: Deploy the built artifacts to a repository or server
+        //             // sh "${MAVEN_HOME}/bin/mvn deploy"
+        //         }
+        //     }
+        // }
     }
 
     post {
