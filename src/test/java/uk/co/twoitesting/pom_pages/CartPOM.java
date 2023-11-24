@@ -34,18 +34,17 @@ public class CartPOM {
     @FindBy(css = ".cart-subtotal > td > .amount.woocommerce-Price-amount > bdi")
     private WebElement subtotal;
 
-    @FindBy(xpath = "/html//article[@id='post-5']/div[@class='entry-content']/div[@class='woocommerce']//table[@class='shop_table shop_table_responsive']//tr[@class='cart-discount coupon-edgewords']/td/span")
-    private WebElement discountAmount;
+    @FindBy(css = "#post-5 > div > div > div.woocommerce-notices-wrapper")
+    private WebElement codeDontExistAlert;
 
     //Getters
 
-
-    public WebElement getSubtotal() {
-        return subtotal;
+    public String getMessageAlert(){
+        waitForElementToBeClickable(driver, codeDontExistAlert, 5);
+        return codeDontExistAlert.getText();
     }
-
-    public WebElement getDiscountAmount() {
-        return discountAmount;
+    public double getSubtotal() {
+        return parseToDouble(subtotal);
     }
 
     //Methods
@@ -63,15 +62,9 @@ public class CartPOM {
         applyCouponBtn.click();
     }
 
-    public double totalDiscount(){
-        return (0.15*(parseToDouble(subtotal)*100))/100;
-    }
-
-
-
     public double parseToDouble(WebElement element){
         waitForElementToBeClickable(driver, element, 2);
-
         return Double.parseDouble(element.getText().substring(1));
     }
+
 }

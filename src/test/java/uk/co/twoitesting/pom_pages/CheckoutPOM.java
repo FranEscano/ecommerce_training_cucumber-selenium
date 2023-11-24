@@ -44,17 +44,6 @@ public class CheckoutPOM {
     @FindBy(id = "place_order")
     private WebElement placeOrderBtn;
 
-    @FindBy(css = ".order > strong")
-    private WebElement orderNumber;
-
-    //Getters
-
-
-    public String getOrderNumber() {
-        waitForElementToBeClickable(driver, orderNumber, 3);
-        return orderNumber.getText();
-    }
-
     //Methods
     public void populateForm(String firstName, String lastName, String address, String city, String postCode, String phone, String email){
         waitForElementToBeClickable(driver, firstNameField, 2);
@@ -79,6 +68,7 @@ public class CheckoutPOM {
         Actions actions = new Actions(driver);
         actions.moveToElement(placeOrderBtn);
         JavascriptExecutor executor = (JavascriptExecutor) driver;
+        waitForElementToBeClickable(driver,placeOrderBtn,3);
         executor.executeScript("arguments[0].click();", placeOrderBtn);
     }
 }

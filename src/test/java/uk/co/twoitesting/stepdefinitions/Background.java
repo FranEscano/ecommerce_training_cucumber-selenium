@@ -33,13 +33,13 @@ public class Background {
 //        MyAccountPOM account = new MyAccountPOM(driver);
         account.acceptCookies();
         account.login(username, password);
-        System.out.println("User entered valid username and password");
+        System.out.println("User entered valid username " +username +" and password " +password);
     }
 
     @Then("I am logged in")
     public void i_am_logged_in() {
 //        MyAccountPOM account = new MyAccountPOM(driver);
-        MatcherAssert.assertThat(account.getAccountMenu().isDisplayed(), is(true));
+        MatcherAssert.assertThat(account.accountMenuDisplayed(), is(true));
         System.out.println("User is logged in");
     }
 

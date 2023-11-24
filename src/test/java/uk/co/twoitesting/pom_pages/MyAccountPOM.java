@@ -24,6 +24,9 @@ public class MyAccountPOM {
     @FindBy(id = "username")
     private WebElement usernameField;
 
+    @FindBy(id = "customer_login")
+    private WebElement loginForm;
+
     @FindBy(id = "password")
     private WebElement passwordField;
 
@@ -33,16 +36,6 @@ public class MyAccountPOM {
     @FindBy(className = "woocommerce-MyAccount-navigation")
     private WebElement accountMenu;
 
-
-    //Getters
-
-    public WebElement getAccountMenu() {
-        return accountMenu;
-    }
-
-    public WebElement getUsernameField() {
-        return usernameField;
-    }
 
     //Methods
     public void acceptCookies(){
@@ -55,5 +48,11 @@ public class MyAccountPOM {
         loginBtn.click();
     }
 
+    public boolean accountMenuDisplayed(){
+        return accountMenu.isDisplayed();
+    }
 
+    public boolean loginFormDisplayed(){
+        return loginForm.isDisplayed();
+    }
 }

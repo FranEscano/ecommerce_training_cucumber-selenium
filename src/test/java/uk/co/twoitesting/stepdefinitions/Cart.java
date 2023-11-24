@@ -30,8 +30,8 @@ public class Cart {
         this.accountMenu = hooks.accountMenu;
     }
 
-    @When("I add a coupon code")
-    public void iAddACouponCode() {
+    @When("I add the code {string} to the cart")
+    public void iAddTheCodeToTheCart(String couponCode) {
         shopper.viewCart();
         int numOfItems = myCart.numOfItemsInTheCart();
         if(numOfItems == 0){
@@ -41,16 +41,27 @@ public class Cart {
         } else {
             System.out.println(("There are " +numOfItems +" products in the cart"));
         }
-        myCart.typeCouponCode("edgewords");
+        myCart.typeCouponCode(couponCode);
         myCart.applyCoupon();
         System.out.println("User applied code");
     }
 
-    @Then("A discount is applied")
-    public void aDiscountIsApplied() {
-
-        MatcherAssert.assertThat(myCart.totalDiscount(), is(myCart.parseToDouble(myCart.getDiscountAmount())));
-        System.out.println("15% discount of " +myCart.parseToDouble(myCart.getSubtotal()) + " is " + myCart.totalDiscount());
+    @Then("A discount of {int}% is applied")
+    public void a_discount_of_is_applied(Integer expectedDiscount) {
+        String alertMessage = myCart.getMessageAlert();
+        String result;
+        switch (alertMessage){
+            case "Coupon code applied successfully.":
+                result = alertMessage;
+                System.out.println(expectedDiscount + "% discount of " + myCart.getSubtotal() + " is " + totalDiscount(expectedDiscount));
+                break;
+            case "Coupon code already applied!":
+                result = alertMessage;
+                break;
+            default:
+                result = "Coupon code does not exist!";
+        }
+        System.out.println(result);
     }
 
     @And("I am able to log out")
@@ -59,7 +70,11 @@ public class Cart {
 
         accountMenu.pressLogout();
 
-        MatcherAssert.assertThat(account.getUsernameField().isDisplayed(), is(true));
+        MatcherAssert.assertThat(account.loginFormDisplayed(), is(true));
         System.out.println("User is logged out");
+    }
+
+    private double totalDiscount(Integer expectedDiscount){
+        return (((double) expectedDiscount /100)*(myCart.getSubtotal()*100))/100;
     }
 }

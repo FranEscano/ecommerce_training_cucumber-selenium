@@ -18,10 +18,10 @@ public class Shop {
         this.shopper = hooks.shopper;
     }
 
-    @When("I add a product to the cart")
-    public void iAddAProductToTheCart() {
+    @When("I add a {string} to the cart")
+    public void iAddAProductToTheCart(String product) {
         navBar.clickShop();
-        productsChosen.add(shopper.addCap());
+        productsChosen.add(shopper.addProduct(product));
         System.out.println("User added " +productsChosen +" to the cart");
     }
 

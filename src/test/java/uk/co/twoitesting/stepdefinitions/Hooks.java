@@ -3,7 +3,6 @@ package uk.co.twoitesting.stepdefinitions;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import uk.co.twoitesting.pom_components.AccountMenuPOM;
 import uk.co.twoitesting.pom_components.NavBarPOM;
@@ -21,11 +20,13 @@ public class Hooks {
      OrdersPOM order;
      AccountMenuPOM accountMenu;
 
+     OrderReceivedPOM orderReceived;
+
      String orderNumber;
 
     @Before
     public void setUp(){
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         account = new MyAccountPOM(driver);
         navBar = new NavBarPOM(driver);
         shopper = new ShopPOM(driver);
@@ -33,6 +34,7 @@ public class Hooks {
         checkout = new CheckoutPOM(driver);
         order = new OrdersPOM(driver);
         accountMenu = new AccountMenuPOM(driver);
+        orderReceived = new OrderReceivedPOM(driver);
     }
 
     @After
