@@ -23,7 +23,7 @@ pipeline {
             }
         }
 
-        // stage('Test') {
+       // // stage('Test') {
         //     steps {
         //         // Run tests using Maven
         //         script {
