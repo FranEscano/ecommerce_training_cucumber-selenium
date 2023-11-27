@@ -46,7 +46,7 @@ pipeline {
     post {
         success {
             // Actions to be performed after a successful build
-            echo 'Build successful! Perform additional tasks here. Please, work'
+            echo 'Build successful! Perform additional tasks here.'
         }
 
         failure {
