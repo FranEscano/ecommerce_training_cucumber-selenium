@@ -23,24 +23,26 @@ pipeline {
             }
         }
 
-       // // stage('Test') {
-        //     steps {
-        //         // Run tests using Maven
-        //         script {
-        //             bat "${MAVEN_HOME}/bin/mvn test"
-        //         }
-        //     }
-        // }
 
-        // stage('Deploy') {
-        //     steps {
-        //         // Perform deployment steps if needed
-        //         script {
-        //             // Example: Deploy the built artifacts to a repository or server
-        //             // bat "${MAVEN_HOME}/bin/mvn deploy"
-        //         }
-        //     }
-        // }
+    stage('Install Postman CLI') {
+      steps {
+        sh 'powershell.exe -NoProfile -InputFormat None -ExecutionPolicy AllSigned -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString(`https://dl-cli.pstmn.io/install/win64.ps1`))"'
+      }
+    }
+
+    stage('Postman CLI Login') {
+      steps {
+        sh 'postman login --with-api-key PMAK-6565ad7e542df4002ab410b9-6224cf380d248302b30ec13a83073344d6'
+        }
+    }
+
+    stage('Running collection') {
+      steps {
+        sh 'postman collection run "30536390-37f6c7dd-910e-403f-9041-2bc1e4567428"-e "30536390-4d9a33a7-94fc-42f8-8be6-a4ff295bc753"'
+      }
+    }
+  
+
     }
 
     post {
