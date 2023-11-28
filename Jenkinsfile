@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    	 environment {
-	 		POSTMAN_API_KEY = credentials('POSTMAN_API_KEY')
-	 }
+    // 	 environment {
+	//  		POSTMAN_API_KEY = credentials('POSTMAN_API_KEY')
+	//  }
 
     stages {
         // stage('Checkout') {
