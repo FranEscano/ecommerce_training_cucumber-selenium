@@ -1,10 +1,9 @@
 pipeline {
     agent any
 
-    // environment {
-    //     // Define Maven home if not automatically detected
-    //     MAVEN_HOME = tool 'Maven'
-    // }
+    	 environment {
+	 		POSTMAN_API_KEY = credentials('POSTMAN_API_KEY')
+	 }
 
     stages {
         // stage('Checkout') {
