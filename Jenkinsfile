@@ -38,7 +38,7 @@ pipeline {
 
     stage('Running collection') {
       steps {
-        def postmanCmd = """newman run "30536390-37f6c7dd-910e-403f-9041-2bc1e4567428" -e "30536390-4d9a33a7-94fc-42f8-8be6-a4ff295bc753" """
+        def postmanCmd = 'newman run "30536390-37f6c7dd-910e-403f-9041-2bc1e4567428" -e "30536390-4d9a33a7-94fc-42f8-8be6-a4ff295bc753"'
         bat postmanCmd      }
     }
   
