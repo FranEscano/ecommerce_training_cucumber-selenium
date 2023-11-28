@@ -38,7 +38,7 @@ pipeline {
 
     stage('Running collection') {
       steps {
-        bat 'postman collection run "C:/Users/FranciscoEscano/Documents/Training/Products.postman_collection.json"-e "30536390-4d9a33a7-94fc-42f8-8be6-a4ff295bc753"'
+        bat postman collection run "C:/Users/FranciscoEscano/Documents/Training/Products.postman_collection.json" -e "30536390-4d9a33a7-94fc-42f8-8be6-a4ff295bc753"
       }
     }
   
