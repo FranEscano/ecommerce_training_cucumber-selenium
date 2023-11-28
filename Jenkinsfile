@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     	 environment {
-	 		POSTMAN_API_KEY = credentials('bb6e8cec-cdca-4884-9836-345ff30f2237')
+	 		POSTMAN_API_KEY = credentials('POSTMAN_API_KEY')
 	 }
 
     stages {
@@ -31,7 +31,7 @@ pipeline {
 
     stage('Postman CLI Login') {
       steps {
-        bat 'postman login --with-api-key $POSTMAN_API_KEY'
+        bat 'postman login --with-api-key %POSTMAN_API_KE%'
         }
     }
 
