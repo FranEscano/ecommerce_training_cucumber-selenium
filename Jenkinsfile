@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    	 environment {
-	 		POSTMAN_API_KEY = credentials('POSTMAN_API_KEY')
-	 }
-
     stages {
         // stage('Checkout') {
         //     steps {
@@ -31,10 +27,15 @@ pipeline {
 
     stage('Postman CLI Login') {
       steps {
-        bat 'postman login --with-api-key %POSTMAN_API_KE%'
+        withCredentials([string(credentialsId: 'POSTMAN_API_KEY', variable: 'POSTMAN_API_KEY')]) {
+          echo "key is ${POSTMAN_API_KEY}"
+          bat '''
+            echo %POSTMAN_API_KEY%
+            postman login --with-api-key %POSTMAN_API_KEY%
+          '''
         }
+      }
     }
-
     stage('Running collection') {
       steps {
         bat 'postman collection run "C:/Users/FranciscoEscano/Documents/Training/Products.postman_collection.json" -e "30536390-4d9a33a7-94fc-42f8-8be6-a4ff295bc753"'
