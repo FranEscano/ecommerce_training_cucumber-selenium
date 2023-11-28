@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     	 environment {
-	 		POSTMAN_API_KEY = credentials('bb6e8cec-cdca-4884-9836-345ff30f2237')
+	 		POSTMAN_API_KEY = credentials('1193f9217e81a1d9837364d8f21c9c0d04')
 	 }
 
     stages {
