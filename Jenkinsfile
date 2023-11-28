@@ -32,7 +32,7 @@ pipeline {
 
     stage('Postman CLI Login') {
       steps {
-        bat 'postman login --with-api-key PMAK-6565ad7e542df4002ab410b9-6224cf380d248302b30ec13a83073344d6'
+        bat 'postman login --with-api-key $POSTMAN_API_KEY'
         }
     }
 
