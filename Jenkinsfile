@@ -7,21 +7,21 @@ pipeline {
     // }
 
     stages {
-        stage('Checkout') {
-            steps {
-                // Checkout the source code from your version control system (e.g., Git)
-                checkout scm
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         // Checkout the source code from your version control system (e.g., Git)
+        //         checkout scm
+        //     }
+        // }
 
-        stage('Build') {
-            steps {
-                // Use Maven to build the project
-                script {
-                    bat "mvn clean install"
-                }
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         // Use Maven to build the project
+        //         script {
+        //             bat "mvn clean install"
+        //         }
+        //     }
+        // }
 
 
     stage('Install Postman CLI') {
