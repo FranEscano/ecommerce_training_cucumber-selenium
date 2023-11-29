@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import uk.co.twoitesting.pom_components.NavBarPOM;
 import uk.co.twoitesting.pom_pages.CartPOM;
+import uk.co.twoitesting.pom_pages.MyAccountPOM;
 
 public class Hooks {
 
@@ -22,6 +23,9 @@ public class Hooks {
         driver = new FirefoxDriver();
         shareDict.addDict("mydriver", driver);
         shareDict.addDict("baseURL", baseUrl);
+        driver.get(baseUrl);
+        MyAccountPOM account = new MyAccountPOM(driver);
+        account.acceptCookies();
     }
 
     @After
