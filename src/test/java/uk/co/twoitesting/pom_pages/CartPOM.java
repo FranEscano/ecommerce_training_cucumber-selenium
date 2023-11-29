@@ -37,6 +37,9 @@ public class CartPOM {
     @FindBy(css = "#post-5 > div > div > div.woocommerce-notices-wrapper")
     private WebElement codeDontExistAlert;
 
+    @FindBy(css = "tr:nth-of-type(1) > .product-remove > .remove")
+    private WebElement removeIcon;
+
     //Getters
 
     public String getMessageAlert(){
@@ -67,4 +70,16 @@ public class CartPOM {
         return Double.parseDouble(element.getText().substring(1));
     }
 
+    public boolean productInCart(){
+        try {
+            return removeIcon.isDisplayed();
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+    public void removeItem(){
+        removeIcon.click();
+    }
 }

@@ -4,41 +4,38 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import uk.co.twoitesting.pom_components.AccountMenuPOM;
 import uk.co.twoitesting.pom_components.NavBarPOM;
-import uk.co.twoitesting.pom_pages.*;
+import uk.co.twoitesting.pom_pages.CartPOM;
 
 public class Hooks {
 
-     WebDriver driver;
+     private WebDriver driver;
      String baseUrl = "https://www.edgewordstraining.co.uk/demo-site/my-account/";
-     MyAccountPOM account;
-     NavBarPOM navBar;
-     ShopPOM shopper;
-     CartPOM myCart;
-     CheckoutPOM checkout;
-     OrdersPOM order;
-     AccountMenuPOM accountMenu;
+     private final SharedDictionary shareDict;
 
-     OrderReceivedPOM orderReceived;
-
-     String orderNumber;
+    public Hooks(SharedDictionary shareDict) {
+        this.shareDict = shareDict;
+    }
 
     @Before
     public void setUp(){
         driver = new FirefoxDriver();
-        account = new MyAccountPOM(driver);
-        navBar = new NavBarPOM(driver);
-        shopper = new ShopPOM(driver);
-        myCart = new CartPOM(driver);
-        checkout = new CheckoutPOM(driver);
-        order = new OrdersPOM(driver);
-        accountMenu = new AccountMenuPOM(driver);
-        orderReceived = new OrderReceivedPOM(driver);
+        shareDict.addDict("mydriver", driver);
+        shareDict.addDict("baseURL", baseUrl);
     }
 
     @After
     public void tearDown() {
+        this.driver = (WebDriver) shareDict.readDict("mydriver");
+        NavBarPOM navBar = new NavBarPOM(driver);
+        navBar.clickCart();
+
+        CartPOM myCart = new CartPOM(driver);
+        if(myCart.productInCart()){
+            myCart.removeItem();
+        }
+
+
         driver.quit();
     }
 }

@@ -19,13 +19,13 @@ pipeline {
         // }
 
 
-    stage('Install Postman CLI') {
+    stage('Install Postman CLI using PWS') {
       steps {
         bat 'powershell.exe -NoProfile -InputFormat None -ExecutionPolicy AllSigned -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString(\'https://dl-cli.pstmn.io/install/win64.ps1\'))"'
       }
     }
 
-    stage('Postman CLI Login') {
+    stage('Postman CLI Login ') {
       steps {
         withCredentials([string(credentialsId: 'POSTMAN_API_KEY', variable: 'POSTMAN_API_KEY')]) {
           echo "key is ${POSTMAN_API_KEY}"

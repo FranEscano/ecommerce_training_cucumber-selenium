@@ -13,12 +13,14 @@ public class Background {
     private final WebDriver driver;
     private final String baseUrl;
 
-    private final MyAccountPOM account;
 
-    public Background(Hooks hooks) {
-        this.driver = hooks.driver;
-        this.baseUrl = hooks.baseUrl;
-        this.account = hooks.account;
+    //    private final MyAccountPOM account;
+
+    public Background(SharedDictionary shareDict) {
+        this.driver = (WebDriver) shareDict.readDict("mydriver");
+//        this.driver = hooks.driver;
+        this.baseUrl = shareDict.readDict("baseURL").toString();
+//        this.account = hooks.account;
     }
 
 
@@ -30,7 +32,7 @@ public class Background {
     }
     @When("I enter valid username {string} and password {string}")
     public void i_enter_valid_username_and_password(String username, String password) {
-//        MyAccountPOM account = new MyAccountPOM(driver);
+        MyAccountPOM account = new MyAccountPOM(driver);
         account.acceptCookies();
         account.login(username, password);
         System.out.println("User entered valid username " +username +" and password " +password);
@@ -38,7 +40,7 @@ public class Background {
 
     @Then("I am logged in")
     public void i_am_logged_in() {
-//        MyAccountPOM account = new MyAccountPOM(driver);
+        MyAccountPOM account = new MyAccountPOM(driver);
         MatcherAssert.assertThat(account.accountMenuDisplayed(), is(true));
         System.out.println("User is logged in");
     }

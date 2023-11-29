@@ -23,6 +23,9 @@ public class NavBarPOM {
     @FindBy(linkText = "Checkout")
     private WebElement checkoutNav;
 
+    @FindBy(linkText = "Cart")
+    private WebElement cartNav;
+
     //Methods
     public void clickShop(){
         shopNav.click();
@@ -35,4 +38,6 @@ public class NavBarPOM {
     public void clickCheckout(){
         checkoutNav.click();
     }
+
+    public void clickCart(){ cartNav.click();}
 }

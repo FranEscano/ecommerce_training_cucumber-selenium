@@ -3,6 +3,7 @@ package uk.co.twoitesting.stepdefinitions;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
 import uk.co.twoitesting.pom_components.NavBarPOM;
 import uk.co.twoitesting.pom_pages.CheckoutPOM;
 
@@ -11,22 +12,23 @@ import java.util.Map;
 
 public class Checkout {
 
-    private final NavBarPOM navBar;
-    private final CheckoutPOM checkout;
+    private final WebDriver driver;
 
-    public Checkout(Hooks hooks) {
-        this.navBar = hooks.navBar;
-        this.checkout = hooks.checkout;
+    public Checkout(SharedDictionary shareDict) {
+        this.driver = (WebDriver) shareDict.readDict("mydriver");
     }
 
     @And("I navigate to the checkout section")
     public void iNavigateToTheCheckoutSection() {
+        NavBarPOM navBar = new NavBarPOM(driver);
         navBar.clickCheckout();
         System.out.println("User is in checkout section");
     }
 
     @When("I complete the form with")
     public void iCompleteTheFormWith(DataTable table) {
+        CheckoutPOM checkout = new CheckoutPOM(driver);
+
         List<Map<String, String>> rows = table.asMaps(String.class, String.class);
 
         for (Map<String, String> data : rows) {
@@ -37,6 +39,7 @@ public class Checkout {
 
     @And("Place an order")
     public void placeAnOrder() {
+        CheckoutPOM checkout = new CheckoutPOM(driver);
         checkout.clickPlaceOrder();
 
     }

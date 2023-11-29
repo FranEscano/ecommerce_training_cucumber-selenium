@@ -11,19 +11,9 @@ public class OrdersPOM {
 
     private final WebDriver driver;
 
-    private static String orderNumber;
-
     public OrdersPOM(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-    }
-
-    public String getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(String orderNumber) {
-        OrdersPOM.orderNumber = orderNumber;
     }
 
     public WebElement findOrder(String orderToFind) {
