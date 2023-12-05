@@ -24,6 +24,7 @@ public class Shop {
 
         ShopPOM shopper = new ShopPOM(driver);
         productsInCart.add(shopper.addProduct(product));
+        productsInCart.add(shopper.addProduct(product));
         System.out.println("User added " +productsInCart +" to the cart");
     }
 
